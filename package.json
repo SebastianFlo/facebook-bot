@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/SebastianFlo/facebook-bot/issues"
   },
-  "homepage": "https://github.com/SebastianFlo/facebook-bot#readme"
+  "homepage": "https://github.com/SebastianFlo/facebook-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
 }
