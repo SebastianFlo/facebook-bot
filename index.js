@@ -73,7 +73,7 @@ function sendGenericMessage(sender) {
         "elements": [{
           "title": "First card",
           "subtitle": "Element #1 of an hscroll",
-          "image_url": "/assets/ic_falcon_logo.png",
+          "image_url": "https://www.falconsocial.com/wp-content/uploads/2014/12/Falcon_Social_logo_black-wing-800x800.png",
           "buttons": [{
             "type": "web_url",
             "url": "https://www.messenger.com/",
@@ -86,7 +86,7 @@ function sendGenericMessage(sender) {
         },{
           "title": "Second card",
           "subtitle": "Element #2 of an hscroll",
-          "image_url": "/assets/ic_falcon_logo.png",
+          "image_url": "https://www.falconsocial.com/wp-content/uploads/2014/12/Falcon_Social_logo_black-wing-800x800.png",
           "buttons": [{
             "type": "postback",
             "title": "Postback",
