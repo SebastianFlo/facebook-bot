@@ -9,8 +9,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 // views is directory for all template files
+app.engine('html', require('ejs').renderFile);
+
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
+
 
 app.get('/', function(request, response) {
   response.render('pages/index');
@@ -30,6 +33,7 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
+      console.log('Text received, echo: '+ text.substring(0, 200));
       sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
       if (text === 'Generic') {
         sendGenericMessage(sender);
