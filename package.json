@@ -1,0 +1,24 @@
+{
+  "name": "facebook-bot",
+  "version": "1.0.0",
+  "description": "A simple facebook bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SebastianFlo/facebook-bot.git"
+  },
+  "keywords": [
+    "facebook",
+    "bot",
+    "node"
+  ],
+  "author": "Sebastian Florian <@SebFlorian>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastianFlo/facebook-bot/issues"
+  },
+  "homepage": "https://github.com/SebastianFlo/facebook-bot#readme"
+}
