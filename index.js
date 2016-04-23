@@ -30,7 +30,7 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      sendGenericMessage(sender, "Text received, echo: "+ text.substring(0, 200));
     }
   }
   res.sendStatus(200);
@@ -43,6 +43,55 @@ function sendTextMessage(sender, text) {
     text:text
   };
   
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+      recipient: {id:sender},
+      message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
+
+function sendGenericMessage(sender, text) {
+  messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "First card",
+          "subtitle": "Element #1 of an hscroll",
+          "image_url": "/assets/ic_falcon_logo.png",
+          "buttons": [{
+            "type": "web_url",
+            "url": "https://www.messenger.com/",
+            "title": "Web url"
+          }, {
+            "type": "postback",
+            "title": "Postback",
+            "payload": text,
+          }],
+        },{
+          "title": "Second card",
+          "subtitle": "Element #2 of an hscroll",
+          "image_url": "/assets/ic_falcon_logo.png",
+          "buttons": [{
+            "type": "postback",
+            "title": "Postback",
+            "payload": text,
+          }],
+        }]
+      }
+    }
+  };
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
