@@ -30,7 +30,11 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
-      sendGenericMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      if (text === 'Generic') {
+        sendGenericMessage(sender);
+        continue;
+      }
     }
   }
   res.sendStatus(200);
@@ -60,7 +64,7 @@ function sendTextMessage(sender, text) {
   });
 }
 
-function sendGenericMessage(sender, text) {
+function sendGenericMessage(sender) {
   messageData = {
     "attachment": {
       "type": "template",
@@ -77,7 +81,7 @@ function sendGenericMessage(sender, text) {
           }, {
             "type": "postback",
             "title": "Postback",
-            "payload": text,
+            "payload": "Payload for first element in a generic bubble",
           }],
         },{
           "title": "Second card",
@@ -86,7 +90,7 @@ function sendGenericMessage(sender, text) {
           "buttons": [{
             "type": "postback",
             "title": "Postback",
-            "payload": text,
+            "payload": "Payload for second element in a generic bubble",
           }],
         }]
       }
