@@ -76,7 +76,8 @@
 
 	_core2.default.run(main, { DOM: (0, _dom.makeDOMDriver)('#application') });
 
-	var socket = io.connect('http://localhost:5000');
+	// var socket = io.connect('http://localhost:5000');
+	var socket = io.connect('https://still-bastion-47880.herokuapp.com/');
 
 	socket.on('status:ok', function (data) {
 	  console.log('Connected', data.status);
