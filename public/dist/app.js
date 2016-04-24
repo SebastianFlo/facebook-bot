@@ -61,6 +61,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// var io = require('socket.io-client');
+
 	function main(sources) {
 	  var sinks = {
 	    DOM: sources.DOM.select('.field').events('input').map(function (ev) {
@@ -74,12 +76,19 @@
 
 	_core2.default.run(main, { DOM: (0, _dom.makeDOMDriver)('#application') });
 
-	var socket = io('http://localhost:5000');
-	socket.on('connect', function () {
-	  console.log('connected');
+	var socket = io.connect('http://localhost:5000');
+
+	socket.on('status:ok', function (data) {
+	  console.log('Connected', data.status);
 	});
-	socket.on('event', function (data) {});
-	socket.on('disconnect', function () {});
+
+	socket.on('message:simple', function (data) {
+	  console.log('Simple Message', data.text);
+	});
+
+	socket.on('message:generic', function (data) {
+	  console.log('Generic Message', data.text);
+	});
 
 /***/ },
 /* 2 */
