@@ -50,15 +50,15 @@ io.on('connection', function (socket) {
       sender = event.sender.id;
       if (event.message && event.message.text) {
         text = event.message.text;
-        sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
         socket.emit('message:simple', {
-              text: event.message.text
+              text: text
         });
+        sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
         if (text === 'Generic') {
-          sendGenericMessage(sender);
           socket.emit('message:generic', {
-              text: event.message.text
+              text: text
           });
+          sendGenericMessage(sender);
           continue;
         }
       }
