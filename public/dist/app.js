@@ -74,6 +74,13 @@
 
 	_core2.default.run(main, { DOM: (0, _dom.makeDOMDriver)('#application') });
 
+	var socket = io('http://localhost:5000');
+	socket.on('connect', function () {
+	  console.log('connected');
+	});
+	socket.on('event', function (data) {});
+	socket.on('disconnect', function () {});
+
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {

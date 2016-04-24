@@ -10,7 +10,10 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.js?$/, loaders: ['babel'], include: path.join(__dirname, 'public/src'), exclude: /node_modules/ },
+            { test: /\.js?$/, loaders: ['babel'],
+                include: path.join(__dirname, 'public/src'), 
+                exclude: [/node_modules/],  
+            }
         ]
     }
 };

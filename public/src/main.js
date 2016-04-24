@@ -19,3 +19,10 @@ function main(sources) {
 }
 
 Cycle.run(main, { DOM: makeDOMDriver('#application') });
+
+var socket = io('http://localhost:5000');
+socket.on('connect', function(){
+  console.log('connected');
+});
+socket.on('event', function(data){});
+socket.on('disconnect', function(){});

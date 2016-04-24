@@ -4,6 +4,20 @@ var app = express();
 var bodyParser = require('body-parser');
 var request = require('request');
 var key = require('./confidential/token.js');
+var io = require('socket.io')();
+
+io.on('connection', function (socket) {
+  
+  // New connection on port
+  console.log('New Connection: ', socket.id);
+  
+  // Emit name for testing purposes
+  socket.emit('message: job', {
+    name: '@SebFlorian'
+  });
+
+});
+
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -122,3 +136,79 @@ function sendGenericMessage(sender) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+
+
+// io.on('connection', function (socket) {
+  
+//   // New connection on port
+//   console.log('New Connection: ', socket.id);
+  
+//   // Emit name for testing purposes
+//   socket.emit('send:name', {
+//     name: '@SebFlorian'
+//   });
+  
+//   /*
+//   / Published Data
+//   */
+  
+  
+//   // Delete Item
+//   socket.on('delete:pub', function (data) {
+    
+//     console.log("Pub item deleted ", data.id);
+    
+//     // breadcast to all other clients deleted element's id
+//     socket.broadcast.emit('delete:pub:out', {
+//       id: data.id
+//     });
+    
+//   });
+  
+//   // Add Item
+//   socket.on('add:pub', function (data) {
+    
+//     console.log("Pub item added: ", data.item.id);
+    
+//     // breadcast to all other clients added element
+//     socket.broadcast.emit('add:pub:out', {
+//       item : data.item
+//     });
+//   });
+  
+//   // Update Item
+//   socket.on('update:pub', function (data) {
+    
+//     console.log("Pub item updated: ", data.id);
+    
+//     // breadcast to all other clients added element
+//     socket.broadcast.emit('update:pub:out', {
+//       id   : data.id,
+//       item : data.item
+//     });
+//   });
+  
+//   /*
+//   / Reach Data
+//   */
+  
+//   // Add Item
+//   socket.on('add:reach', function (data) {
+    
+//     // console.log("Reach item added: ", data.item);
+    
+//     // breadcast to all other clients added element
+//     socket.broadcast.emit('add:reach:out', {
+//       item : data.item
+//     });
+//   });
+  
+//   // Disconnect
+//   socket.on('disconnect', function(){
+//     console.log('Disconnected: ', socket.id);
+//   });
+  
+// });
+
+// module.exports = io;
