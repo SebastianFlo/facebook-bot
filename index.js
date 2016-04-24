@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
     
     request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
-      qs: {access_token:token},
+      qs: {access_token:key.token.page},
       method: 'POST',
       json: {
         recipient: {id:sender},
