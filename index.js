@@ -4,6 +4,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var key = require('./confidential/token.js');
 var bodyParser = require('body-parser');
+var request = require('request');
 
 app.use(express.static(__dirname + '/public'));  
 app.use(bodyParser.json());
