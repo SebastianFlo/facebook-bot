@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
       event = req.body.entry[0].messaging[i];
       sender = event.sender.id;
       if (event.message && event.message.text) {
-        console.log('message is' + event.message);
+        console.log(util.inspect(event.message, false, null));
         text = event.message.text;
         socket.emit('message:simple', {
               text: text
